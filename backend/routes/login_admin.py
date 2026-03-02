@@ -6,10 +6,11 @@ from flask_jwt_extended import (
 )
 from db import database, User, Washer
 
-login_api = Blueprint("login", __name__, url_prefix="/login")
+login_api = Blueprint("login_admin", __name__, url_prefix="/admin/auth")
 
 @login_api.route("/login ", methods=["POST"])
-def login(username, password):
+def login():
+    print("LOGIN")
     data = request.get_json()
 
     if not data:

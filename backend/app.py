@@ -3,7 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from dotenv import load_dotenv
 from db import database, seed_admins, User
-from routes.login import login_api
+from routes.login_admin import login_api
 
 load_dotenv()
 
@@ -15,7 +15,7 @@ app.config["JWT_SECRET_KEY"] = "super-secret-jwt-key"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600 
 
 database.init_app(app)
-CORS(app)
+CORS(app, origins=["http://localhost:5173"])
 jwt = JWTManager(app)
 
 app.register_blueprint(login_api)
